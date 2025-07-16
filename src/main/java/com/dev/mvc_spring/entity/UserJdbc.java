@@ -1,10 +1,11 @@
 package com.dev.mvc_spring.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-@Entity
-@Table(name = "users")
-public class User {
+public class UserJdbc {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,13 +14,14 @@ public class User {
     @Column(name = "user_name", nullable = false, unique = true)
     private String username;
 
+    @Column(name = "password", nullable = false)
     private String password;
 
     private String role;
 
-    public User() {}
+    public UserJdbc() {}
 
-    public User(Long id, String username, String password, String role) {
+    public UserJdbc(Long id, String username, String password, String role) {
         this.id = id;
         this.username = username;
         this.password = password;

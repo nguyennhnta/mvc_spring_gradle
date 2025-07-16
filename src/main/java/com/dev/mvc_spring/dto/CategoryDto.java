@@ -1,8 +1,13 @@
 package com.dev.mvc_spring.dto;
+import jakarta.validation.constraints.NotBlank;
 
 public class CategoryDto {
     private Long id;
+
+    @NotBlank(message = "name không được để trống")
     private String name;
+
+    @NotBlank(message = "description không được để trống")
     private String description;
 
     // Constructors

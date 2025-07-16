@@ -3,6 +3,7 @@ package com.dev.mvc_spring.controller;
 import com.dev.mvc_spring.dto.CategoryDto;
 import com.dev.mvc_spring.dto.PostDto;
 import com.dev.mvc_spring.service.CategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,7 @@ public class CategoryController {
 
     // POST create category
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody CategoryDto categoryDto) {
+    public ResponseEntity<?> create(@RequestBody @Valid CategoryDto categoryDto) {
         CategoryDto dto  = categoryService.saveCategory(categoryDto);
         return ResponseEntity.ok(dto);
     }
@@ -53,6 +54,13 @@ public class CategoryController {
     public ResponseEntity<?> delete(@PathVariable("id") Long id) {
         categoryService.deleteCategory(id);
         return ResponseEntity.ok("Delete success");
+    }
+
+    @GetMapping("/test-error-exception")
+    public String testError() {
+        // Lỗi bất ngờ (chia cho 0)
+        int x = 10 / 0;
+        return "Không bao giờ tới đây";
     }
 
 }
